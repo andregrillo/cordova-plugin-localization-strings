@@ -40,8 +40,12 @@ module.exports = function(context) {
     //Checks required languages array and create respective files
     for (let i = 0; i < localizations.languages.length; i++) {
       let translationFilePath = path.join(translationsDir, localizations.languages[i] + ".json");
-      let translation = localizations.
-      fs.writeFile(translationFilePath, localizations.translations[localizations.languages[i]], function(err) {
+      let translation = localizations.translations[localizations.languages[i]];
+
+      console.log("👉 translationFilePath: " + translationFilePath);
+      console.log("👉 translation: " + translation);
+
+      fs.writeFile(translationFilePath, translation, function(err) {
         if(err) {
             return console.log("🚨 Error writing translation file " + localizations.languages[i] + ".json: " + err);
         }
