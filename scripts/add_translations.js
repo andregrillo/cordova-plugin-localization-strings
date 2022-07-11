@@ -45,6 +45,7 @@ module.exports = function(context) {
     var jsonTemplatePath = path.join(context.opts.projectRoot, 'plugins/cordova-plugin-localization-strings/scripts/language_template.json');
     var jsonTemplate;
     fs.readFile(jsonTemplatePath, function read(err, data) {
+      console.log("👉 jsonTemplate1 " + jsonTemplate);
       if (err) {
           console.log("🚨 Error reading json template file");
           throw err;
@@ -53,7 +54,7 @@ module.exports = function(context) {
     });
 
     console.log("👉 jsonTemplatePath " + jsonTemplatePath);
-    console.log("👉 jsonTemplate " + jsonTemplate);
+    console.log("👉 jsonTemplate2 " + jsonTemplate);
 
 /*
 
