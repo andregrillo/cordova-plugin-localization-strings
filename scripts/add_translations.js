@@ -25,7 +25,10 @@ module.exports = function(context) {
       }
     }*/
 
-    localizationStringsJSON = '{"languages":["pt","it", "en"], "translations": {"pt": "Boa!" , "it": "Va bene!", "en": "It works!" }}';;
+    localizationStringsJSON = '{"languages":["pt","it", "en"], "translations": {"pt": "{ "config_ios": {"NSCameraUsageDescription": "Vamos tirar fotos!", "NSLocationWhenInUseUsageDescription": "Precisamos acompanhar a tua localização!", "NSLocationAlwaysAndWhenInUseUsageDescription": "Precisamos acompanhar a tua localização!", "NSLocationAlwaysUsageDescription": "Precisamos acompanhar a tua localização!"}}" , "it": "{ "config_ios": {"NSCameraUsageDescription": "Abbiamo bisogno di scattare qualche foto!", "NSLocationWhenInUseUsageDescription": "Abbiamo bisogno di sapere dove sei!", "NSLocationAlwaysAndWhenInUseUsageDescription": "Abbiamo bisogno di sapere dove sei!", "NSLocationAlwaysUsageDescription": "Abbiamo bisogno di sapere dove sei!"}}", "en": "{ "config_ios": {"NSCameraUsageDescription": "Take pictures", "NSLocationWhenInUseUsageDescription": "Hey I want to track you!", "NSLocationAlwaysAndWhenInUseUsageDescription": "Hey I want to track you!", "NSLocationAlwaysUsageDescription": "Hey I want to track you!"}}" }}';;
+
+
+    //{ "config_ios": {"NSCameraUsageDescription": "Take pictures", "NSLocationWhenInUseUsageDescription": "Hey I want to track you!", "NSLocationAlwaysAndWhenInUseUsageDescription": "Hey I want to track you!", "NSLocationAlwaysUsageDescription": "Hey I want to track you!"}}
 
     //JSON parsing
     const localizations = JSON.parse(localizationStringsJSON);
@@ -41,9 +44,6 @@ module.exports = function(context) {
     for (let i = 0; i < localizations.languages.length; i++) {
       let translationFilePath = path.join(translationsDir, localizations.languages[i] + ".json");
       let translation = localizations.translations[localizations.languages[i]];
-
-      console.log("👉 translationFilePath: " + translationFilePath);
-      console.log("👉 translation: " + translation);
 
       fs.writeFile(translationFilePath, translation, function(err) {
         if(err) {
