@@ -12,7 +12,7 @@
 
   <preference name="TRANSLATION_PATH" default="translations/app/" />
 
-  <hook type="before_plugin_install" src="scripts/add_translations.js" />
+  <hook type="after_plugin_install" src="scripts/add_translations.js" />
   <hook src="scripts/create_strings.js" type="after_prepare" />
 
 </plugin>
