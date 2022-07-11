@@ -31,7 +31,7 @@ module.exports = function(context) {
     const localizations = JSON.parse(localizationStringsJSON);
 
     //Create root translations directory
-    var translationsDir = path.join(projectRoot, 'translations', 'app');
+    var translationsDir = path.join(context.opts.projectRoot, 'translations', 'app');
 
     if (!fs.existsSync(translationsDir)){
         fs.mkdirSync(translationsDir, { recursive: true });
