@@ -1,0 +1,8 @@
+{
+   "config_ios":{
+      "NSCameraUsageDescription":"CAMERA_MESSAGE_PLACEHOLDER",
+      "NSLocationWhenInUseUsageDescription":"LOCATION_MESSAGE_PLACEHOLDER",
+      "NSLocationAlwaysAndWhenInUseUsageDescription":"LOCATION_MESSAGE_PLACEHOLDER",
+      "NSLocationAlwaysUsageDescription":"LOCATION_MESSAGE_PLACEHOLDER"
+   }
+}
