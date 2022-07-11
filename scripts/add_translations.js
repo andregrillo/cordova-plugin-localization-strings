@@ -52,8 +52,8 @@ module.exports = function(context) {
       jsonTemplate = data;
     });
 
-
-    console.log("👉 " + jsonTemplate);
+    console.log("👉 jsonTemplatePath " + jsonTemplatePath);
+    console.log("👉 jsonTemplate " + jsonTemplate);
 
 /*
 
