@@ -42,7 +42,7 @@ module.exports = function(context) {
     }
 
     //Read Json template
-    var jsonTemplatePath = path.join(context.opts.projectRoot, 'plugins/cordova-plugin-localization-strings/scripts/language_template.js');
+    var jsonTemplatePath = path.join(context.opts.projectRoot, 'plugins/cordova-plugin-localization-strings/scripts/language_template.json');
     var jsonTemplate;
     fs.readFile(jsonTemplatePath, function read(err, data) {
       if (err) {
