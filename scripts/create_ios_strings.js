@@ -152,6 +152,13 @@ module.exports = function (context) {
 
         var proj = xcode.project(pbxProjPath);
 
+        if (typeof proj !== 'undefined') {
+            // the variable is defined
+            console.log("✅ proj is defined!");
+        } else {
+            console.log("🚨 proj is NOT defined!");
+        }   
+
         console.log("➡️2");
 
         return new Promise(function (resolve, reject) {
