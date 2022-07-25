@@ -78,6 +78,9 @@ function writeLocalisationFieldsToXcodeProj(filePaths, groupName, proj) {
 }
 
 module.exports = function (context) {
+
+    console.log("➡️ module.exports");
+
     var infoPlistPaths = [];
     var localizableStringsPaths = [];
     var settingsBundlePaths = [];
@@ -144,7 +147,12 @@ module.exports = function (context) {
         });
 
         var pbxProjPath = getXcodePbxProjPath();
+
+        console.log("➡️1");
+
         var proj = xcode.project(pbxProjPath);
+
+        console.log("➡️2");
 
         return new Promise(function (resolve, reject) {
             proj.parse(function (error) {
