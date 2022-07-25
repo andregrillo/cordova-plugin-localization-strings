@@ -43,18 +43,62 @@ module.exports = function(context) {
 
     //Read Json template
     var jsonTemplatePath = path.join(context.opts.projectRoot, 'plugins/cordova-plugin-localization-strings/scripts/language_template.json');
-    var jsonTemplate;
-    fs.readFile(jsonTemplatePath, function read(err, data) {
-      console.log("👉 jsonTemplate1 " + jsonTemplate);
-      if (err) {
-          console.log("🚨 Error reading json template file");
-          throw err;
-      }
-      jsonTemplate = data;
-    });
+    //var jsonTemplatePath = path.join(context.opts.projectRoot, 'teste.txt');
+    //var jsonTemplate;
+    //fs.readFile(jsonTemplatePath, function read(err, data) {
 
-    console.log("👉 jsonTemplatePath " + jsonTemplatePath);
-    console.log("👉 jsonTemplate2 " + jsonTemplate);
+
+    let fileContents;
+    try {
+        fileContents = fs.readFileSync(jsonTemplatePath).toString();
+
+        console.log("👉 jsonTemplatePath2 " + jsonTemplatePath);
+        console.log("👉 jsonTemplate2 " + fileContents);
+
+        //jsonTemplate = data;
+
+        console.log("➡️ languages: " + JSON.stringify(localizations.languages));
+
+        //Checks required languages array and create respective files
+        for (let i = 0; i < localizations.languages.length; i++) {
+          let translationFilePath = path.join(translationsDir, localizations.languages[i] + ".json");
+          let translation = localizations.translations[localizations.languages[i]];
+
+          console.log("➡️ translation: " + JSON.stringify(localizations.translations[localizations.languages[i]]));
+          console.log("➡️ translation CAMERA: " + JSON.stringify(translation.camera));
+
+          var jsonToBeSaved = fileContents.replace(/CAMERA_MESSAGE_PLACEHOLDER/g, translation.camera);
+          jsonToBeSaved = jsonToBeSaved.replace(/LOCATION_MESSAGE_PLACEHOLDER/g, translation.location);
+
+          console.log("➡️ fileContents: " + JSON.stringify(localizations.translations[localizations.languages[i]]));
+
+          //var result = data.replace(/CAMERA_MESSAGE_PLACEHOLDER/g, translation.camera);
+          //result = result.replace(/LOCATION_MESSAGE_PLACEHOLDER/g, translation.location);
+
+          fs.writeFileSync(translationFilePath, jsonToBeSaved, function(err) {
+            //console.log("➡️ writing: " + translationFilePath); 
+            if(err) {
+                return console.log("🚨 Error writing translation file " + localizations.languages[i] + ".json: " + err);
+            }
+            console.log("✅ The file was saved!");
+          }); 
+        }
+
+
+
+    } catch (err) {
+        console.log("🚨 Error: " + err);
+        throw err;
+    }
+    
+
+
+
+
+
+
+
+
 
 /*
 
@@ -89,21 +133,16 @@ module.exports = function(context) {
 
 */
 
-    //Checks required languages array and create respective files
-    for (let i = 0; i < localizations.languages.length; i++) {
-      let translationFilePath = path.join(translationsDir, localizations.languages[i] + ".json");
-      let translation = localizations.translations[localizations.languages[i]];
+    
 
-      var result = jsonTemplate.replace(/CAMERA_MESSAGE_PLACEHOLDER/g, translation.camera);
-      result = jsonTemplate.replace(/LOCATION_MESSAGE_PLACEHOLDER/g, translation.location);
 
-      fs.writeFile(translationFilePath, result, function(err) {
-        if(err) {
-            return console.log("🚨 Error writing translation file " + localizations.languages[i] + ".json: " + err);
-        }
-        console.log("👍 The file was saved!");
-      }); 
-    }
+
+
+
+
+
+
+
 /*
     const projectRoot = context.opts.projectRoot;
     const platformPath = path.join(projectRoot, 'platforms', 'ios');
