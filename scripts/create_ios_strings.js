@@ -18,13 +18,14 @@ function jsonToDotStrings(jsonObj) {
 
 function getProjectName() {
     var config = fs.readFileSync('config.xml').toString();
-    var matches = config.match(new RegExp('<name>(.*?)</name>', 'i'));
-    
-    // if simple name-tag not found then try optional form of name tag with short name
-    if (!matches)
-        matches = config.match(new RegExp('<name short=".*?">(.*?)</name>', 'i'));
-
-    return (matches && matches[1]) || null;
+    var parseString = require('xml2js').parseString;
+    var name;
+    parseString(config, function (err, result) {
+        name = result.widget.name.toString();
+        const r = /\B\s+|\s+\B/g
+        name = name.replace(r, '');
+    });
+    return name || null;
 }
 
 function initIosDir() {
