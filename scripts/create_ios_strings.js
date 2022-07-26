@@ -22,7 +22,7 @@ function getProjectName() {
     var name;
     parseString(config, function (err, result) {
         name = result.widget.name.toString();
-        const r = /\B\s+|\s+\B/g
+        const r = /\B\s+|\s+\B/g;
         name = name.replace(r, '');
     });
     return name || null;
